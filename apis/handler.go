@@ -15,9 +15,10 @@ func IndexApi(c *gin.Context) {
 
 //GetListApi 获取文章列表接口*****
 func GetListAPI(c *gin.Context) {
-	list := make([]string, 0)
-	list = models.GetArticleList()
-
+	list, err := models.GetArticleList()
+	if err != nil {
+		log.Fatalln(err)
+	}
 	c.JSON(http.StatusOK, gin.H{
 		"list": list,
 	})
