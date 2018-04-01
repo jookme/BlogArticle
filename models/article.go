@@ -16,7 +16,7 @@ type Article struct {
 
 //GetArticleList 函数用于获取文章列表*****
 //传入参数：无
-//传出参数：文章列表信息
+//传出参数：文章列表信息，错误信息
 func GetArticleList() ([]string, error) {
 	//从表Article中查询文章列表
 	rows, err := db.SqlDb.Query("SELECT Title FROM Article")
@@ -45,7 +45,7 @@ func GetArticleList() ([]string, error) {
 
 //GetArtiContent 函数用于获取文章内容*****
 //传入参数：文章id
-//传出参数：对应文章id的内容
+//传出参数：对应文章内容，错误信息
 func GetArtiContent(id int) (string, error) {
 	//用content存放获取的文章内容
 	var content string
@@ -60,7 +60,7 @@ func GetArtiContent(id int) (string, error) {
 
 //UpdateArticle 函数用于更新文章*****
 //传入参数：Article 结构体类型变量
-//传出参数：Article表中影响的数据行数，错误报告
+//传出参数：Article表中影响的数据行数，错误信息
 func UpdateArticle(article Article) (ra int64, err error) {
 	// PreparedStatement 可以防止SQL注入攻击
 	stmt, err := db.SqlDb.Prepare("UPDATE Article SET Title=?, Author=? , Content=? , LastTime=? WHERE Id=?")
@@ -83,7 +83,7 @@ func UpdateArticle(article Article) (ra int64, err error) {
 
 //DeleteArticle 函数用于删除文章*****
 //传入参数：一个文章id
-//传出参数：Article表中影响的数据行数，错误报告
+//传出参数：Article表中影响的数据行数，错误信息
 func DeleteArticle(id int) (ra int64, err error) {
 	stmt, err := db.SqlDb.Prepare("DELETE FROM Article WHERE Id=?")
 	if err != nil {
