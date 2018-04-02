@@ -2,10 +2,26 @@
 
 ## 简易博客系统文章部分接口
 
-### 功能
+### 项目目录
 
-发动机拉沃尔夫
-
-    范德萨感受到 割发代首<br>
-    割发代首广东省<br>
-    好地方收入社会人
+BlogArticle
+  │  main.go
+  │  router.go
+  │  
+  ├─apis
+  │      handler.go
+  │      
+  ├─database
+  │      mysql.go
+  │      
+  ├─flowchart
+  │      文章记录删除.png
+  │      文章记录更新.png
+  │      查询文章内容.png
+  │      查询文章列表.png
+  │      
+  ├─models
+  │      article.go
+  │      
+  └─test
+          model_test.go
