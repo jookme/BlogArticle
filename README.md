@@ -288,7 +288,7 @@ content, err := models.GetArtiContent(2)
 #### 对UpdateArticle进行测试
 * 测试前Article表<br>
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/database/article%E8%A1%A8.png "artic表")<br>
-* 测试代码<br>
+* 测试代码  对Id为3的记录进行更新<br>
 ```
 var article models.Article
 	article.Id = 3
@@ -309,13 +309,13 @@ var article models.Article
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestUpdateArticle1.png "")<br>
 * 测试结果输出<br>
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestUpdateArticle2.png "")<br>
-* 测试后表更改为
+* 测试后Article表  Id为3的记录已更新
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/UpdateArticle.png "")<br>
 
 #### 对DeleteArticle进行测试
 * 测试前Article表<br>
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/UpdateArticle.png "")<br>
-* 测试代码<br>
+* 测试代码  删除Id为2的记录<br>
 ```
 testId := 2
 	num, err := models.DeleteArticle(testId)
@@ -330,6 +330,6 @@ testId := 2
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestDeleteArticle1.png "")<br>
 * 测试结果输出<br>
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestDeleteArticle2.png "")<br>
-* 测试后表更改为
+* 测试后Article表  Id为2的记录已删除
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/DeleteArticle.png "")<br>
 
