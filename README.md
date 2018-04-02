@@ -120,16 +120,136 @@ get<br>
 ```
 * api接口实现  （源码地址：apis/handler.go:GetContentApi）<br>
 ```
-list, err := models.GetArticleList()
+aid := c.Param("id")
+	id, err := strconv.Atoi(aid)
 	if err != nil {
 		log.Fatalln(err)
 	}
+
+	var content string
+	content, err = models.GetArtiContent(id)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
 	c.JSON(http.StatusOK, gin.H{
-		"list": list,
+		"content": content,
 	})
 ```
 #### 文章记录更新
-#### 文章记录删除
+* HTTP方法<br>
+put<br>
+* 请求url地址<br>
+/article/:id<br>
+* 输入参数<br>
+文章id<br>
+* 输出参数<br>
+更新成功提示msg 或 错误信息 err<br>
+* 参数说明<br>
 
+|参数名|说明|类型| 
+|:--------------:|:---------------:|:-----------:|
+|msg|更新成功提示|string|  
+|err|错误信息|error|  
+
+* 流程图<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/flowchart/%E6%96%87%E7%AB%A0%E8%AE%B0%E5%BD%95%E6%9B%B4%E6%96%B0.png "")<br>
+
+* model函数实现  （源码地址：models/article.go:UpdateArticle）<br>
+```
+stmt, err := db.SqlDb.Prepare("UPDATE Article SET Title=?, Author=? , Content=? , LastTime=? WHERE Id=?")
+	defer stmt.Close()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	//执行更新
+	res, err := stmt.Exec(article.Title, article.Author, article.Content, article.LastTime, article.Id)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	ra, err = res.RowsAffected()
+	if err != nil {
+		log.Fatalln(err)
+	}
+```
+* api接口实现  （源码地址：apis/handler.go:UpdateArticApi）<br>
+```
+aid := c.Param("id")
+	id, err := strconv.Atoi(aid)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	//通过bind类型绑定的方式来获取更新的内容
+	article := models.Article{Id: id}
+	err = c.Bind(&article)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	//更新
+	_, err = models.UpdateArticle(article)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "Update Article Success!",
+	})
+```
+#### 文章记录删除
+* HTTP方法<br>
+delete<br>
+* 请求url地址<br>
+/article/:id<br>
+* 输入参数<br>
+文章id<br>
+* 输出参数<br>
+删除成功提示msg 或 错误信息 err<br>
+* 参数说明<br>
+
+|参数名|说明|类型| 
+|:--------------:|:---------------:|:-----------:|
+|msg|删除成功提示|string|  
+|err|错误信息|error|  
+
+* 流程图<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/flowchart/%E6%96%87%E7%AB%A0%E8%AE%B0%E5%BD%95%E5%88%A0%E9%99%A4.png "")<br>
+
+* model函数实现  （源码地址：models/article.go:DeleteArticle）<br>
+```
+stmt, err := db.SqlDb.Prepare("DELETE FROM Article WHERE Id=?")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	//执行删除
+	res, err := stmt.Exec(1)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	ra, err = res.RowsAffected()
+	if err != nil {
+		log.Fatalln(err)
+	}
+```
+* api接口实现  （源码地址：apis/handler.go:DelArticApi）<br>
+```
+aid := c.Param("id")
+	id, err := strconv.Atoi(aid)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	//删除
+	_, err = models.DeleteArticle(id)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "Delete Article Success!",
+	})
+```
 
 
