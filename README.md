@@ -285,3 +285,30 @@ content, err := models.GetArtiContent(2)
 * 测试结果输出<br>
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestGetArtiContent2.png "")<br>
 
+#### 对UpdateArticle进行测试
+* 测试前Article表<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/database/article%E8%A1%A8.png "artic表")<br>
+* 测试代码<br>
+```
+var article models.Article
+	article.Id = 3
+	article.Title = "testTitle"
+	article.Author = "testAuthor"
+	article.Content = "testContent"
+	article.LastTime = "2019"
+
+	num, err := models.UpdateArticle(article)
+	fmt.Println(num)
+	if err != nil {
+		t.Error(`Error in UpdateArticle!`)
+	} else {
+		fmt.Println("Update Success!")
+	}
+```
+* 在vscode终端输入测试命令<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestUpdateArticle1.png "")<br>
+* 测试结果输出<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestUpdateArticle2.png "")<br>
+* 测试后表更改为
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/UpdateArticle.png "")<br>
+
