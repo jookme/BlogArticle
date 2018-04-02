@@ -1,4 +1,4 @@
-package database
+package Database
 
 import (
 	"database/sql"
@@ -8,10 +8,8 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var SqlDb *sql.DB
-
 //Init 数据库池初始化
-func Init() {
+func Init() *sql.DB {
 	//初始化一个sql.DB对象,接口为mysql中的blog数据库，账号为root，密码为1996
 	SqlDb, err := sql.Open("mysql", "root:1996@tcp(127.0.0.1:3306)/blog")
 	if err != nil {
@@ -24,4 +22,6 @@ func Init() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+
+	return SqlDb
 }
