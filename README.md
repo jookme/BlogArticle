@@ -4,4 +4,6 @@
 
 ### 项目目录
 
-![找不到！](BlogArticle/tree.png "目录树")
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/tree.png "目录树")
+
+### 功能
