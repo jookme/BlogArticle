@@ -15,8 +15,8 @@
 
 ### 数据库
 使用的数据库<br>
-mysql<br>
-数据库建表<br>
+mysql<br><br>
+数据库建表 (主键为 Id）<br>
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/database/article%E8%A1%A8.png "artic表")<br>
 初始化数据库连接池<br>
 ```
@@ -34,7 +34,7 @@ mysql<br>
 	}
 ```    
 <br>
-=========
+###
 
 ### 功能
 #### 查询文章列表
