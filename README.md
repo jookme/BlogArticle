@@ -36,12 +36,14 @@ mysql<br>
 
 ### 功能
 #### 查询文章列表
-* HTTP方法
-get
-* 请求url地址
-/Article
-* 输入参数
-
+* HTTP方法<br>
+get<br>
+* 请求url地址<br>
+/Article<br>
+* 输入参数<br>
+无<br>
+* 输出参数<br>
+文章列表信息 list 或 错误信息 err<br>
 #### 查询文章内容
 #### 文章记录更新
 #### 文章记录删除
