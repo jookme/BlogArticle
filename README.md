@@ -54,8 +54,13 @@ get<br>
 
 * model函数实现  （源码地址：models/article.go:GetArticleList）<br>
 ```
-rows, err := db.SqlDb.Query("SELECT Title FROM Article")
-
+SqlDb, err := sql.Open("mysql", "root:1996@tcp(127.0.0.1:3306)/blog")
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	defer SqlDb.Close()
+	//从表Article中查询文章列表
+	rows, err := SqlDb.Query("SELECT Title FROM Article")
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -108,10 +113,15 @@ get<br>
 
 * model函数实现  （源码地址：models/article.go:GetArtiContent）<br>
 ```
-//用content存放获取的文章内容
+SqlDb, err := sql.Open("mysql", "root:1996@tcp(127.0.0.1:3306)/blog")
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	defer SqlDb.Close()
+	//用content存放获取的文章内容
 	var content string
 	//从表Article中查询对应标题title的文章内容
-	err := db.SqlDb.QueryRow("SELECT Content FROM Article where Id = ?", id).Scan(&content)
+	err = SqlDb.QueryRow("SELECT Content FROM Article where Id = ?", id).Scan(&content)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -156,7 +166,13 @@ put<br>
 
 * model函数实现  （源码地址：models/article.go:UpdateArticle）<br>
 ```
-stmt, err := db.SqlDb.Prepare("UPDATE Article SET Title=?, Author=? , Content=? , LastTime=? WHERE Id=?")
+SqlDb, err := sql.Open("mysql", "root:1996@tcp(127.0.0.1:3306)/blog")
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	defer SqlDb.Close()
+	// PreparedStatement 可以防止SQL注入攻击
+	stmt, err := SqlDb.Prepare("UPDATE Article SET Title=?, Author=? , Content=? , LastTime=? WHERE Id=?")
 	defer stmt.Close()
 	if err != nil {
 		log.Fatalln(err)
@@ -218,12 +234,17 @@ delete<br>
 
 * model函数实现  （源码地址：models/article.go:DeleteArticle）<br>
 ```
-stmt, err := db.SqlDb.Prepare("DELETE FROM Article WHERE Id=?")
+SqlDb, err := sql.Open("mysql", "root:1996@tcp(127.0.0.1:3306)/blog")
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	defer SqlDb.Close()
+	stmt, err := SqlDb.Prepare("DELETE FROM Article WHERE Id=?")
 	if err != nil {
 		log.Fatalln(err)
 	}
 	//执行删除
-	res, err := stmt.Exec(1)
+	res, err := stmt.Exec(id)
 	if err != nil {
 		log.Fatalln(err)
 	}
