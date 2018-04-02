@@ -11,7 +11,6 @@
   * [文章记录删除](#文章记录删除)
 * [封装](#封装)
 * [入口](#入口)
-* [文件目录说明](#文件目录)
 
 ### 数据库
 #### 使用的数据库<br>
@@ -39,7 +38,7 @@ mysql<br>
 * HTTP方法<br>
 get<br>
 * 请求url地址<br>
-/Article<br>
+/article<br>
 * 输入参数<br>
 无<br>
 * 输出参数<br>
@@ -54,7 +53,7 @@ get<br>
 * 流程图<br>
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/flowchart/%E6%9F%A5%E8%AF%A2%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8.png "")<br>
 
-* model函数实现  （源码地址：models/article.go）<br>
+* model函数实现  （源码地址：models/article.go:GetArticleList）<br>
 ```
 rows, err := db.SqlDb.Query("SELECT Title FROM Article")
 
@@ -77,7 +76,7 @@ rows, err := db.SqlDb.Query("SELECT Title FROM Article")
 		log.Fatalln(err)
 	}
 ```
-* api接口实现  （源码地址：apis/handler.go）<br>
+* api接口实现  （源码地址：apis/handler.go:GetListAPI）<br>
 ```
 list, err := models.GetArticleList()
 	if err != nil {
@@ -89,6 +88,46 @@ list, err := models.GetArticleList()
 ```
 
 #### 查询文章内容
+* HTTP方法<br>
+get<br>
+* 请求url地址<br>
+/article/:id<br>
+* 输入参数<br>
+前端页面传来的文章id<br>
+* 输出参数<br>
+文章内容 content 或 错误信息 err<br>
+* 参数说明<br>
+
+|参数名|说明|类型| 
+|:--------------:|:---------------:|:-----------:|
+|id| 文章id |  int  |  
+|content| 文章内容 |  string  |  
+|err|错误信息|   error    |  
+
+* 流程图<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/flowchart/%E6%9F%A5%E8%AF%A2%E6%96%87%E7%AB%A0%E5%86%85%E5%AE%B9.png "")<br>
+
+* model函数实现  （源码地址：models/article.go:GetArtiContent）<br>
+```
+//用content存放获取的文章内容
+	var content string
+	//从表Article中查询对应标题title的文章内容
+	err := db.SqlDb.QueryRow("SELECT Content FROM Article where Id = ?", id).Scan(&content)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+```
+* api接口实现  （源码地址：apis/handler.go:GetContentApi）<br>
+```
+list, err := models.GetArticleList()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"list": list,
+	})
+```
 #### 文章记录更新
 #### 文章记录删除
 
