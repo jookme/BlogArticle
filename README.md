@@ -51,6 +51,9 @@ get<br>
 |list| 所有文章标题列表 |  []string  |  
 |err|错误信息|   error    |  
 
+* 流程图<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/flowchart/%E6%9F%A5%E8%AF%A2%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8.png "")<br>
+
 #### 查询文章内容
 #### 文章记录更新
 #### 文章记录删除
