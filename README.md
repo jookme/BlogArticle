@@ -54,6 +54,59 @@ get<br>
 * 流程图<br>
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/flowchart/%E6%9F%A5%E8%AF%A2%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8.png "")<br>
 
+* model函数实现<br>
+```
+rows, err := db.SqlDb.Query("SELECT Title FROM Article")
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer rows.Close()
+
+	//ArticleList用于存放文章标题列表信息
+	ArticleList := make([]string, 0)
+
+	//遍历获取到的数据
+	for rows.Next() {
+		var article Article
+		rows.Scan(&article.Title)
+		//标题依次添加到ArticleList中
+		ArticleList = append(ArticleList, article.Title)
+	}
+	if err = rows.Err(); err != nil {
+		log.Fatalln(err)
+	}
+rows, err := db.SqlDb.Query("SELECT Title FROM Article")
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer rows.Close()
+
+	//ArticleList用于存放文章标题列表信息
+	ArticleList := make([]string, 0)
+
+	//遍历获取到的数据
+	for rows.Next() {
+		var article Article
+		rows.Scan(&article.Title)
+		//标题依次添加到ArticleList中
+		ArticleList = append(ArticleList, article.Title)
+	}
+	if err = rows.Err(); err != nil {
+		log.Fatalln(err)
+	}
+```
+* api接口实现<br>
+```
+list, err := models.GetArticleList()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"list": list,
+	})
+```
 #### 查询文章内容
 #### 文章记录更新
 #### 文章记录删除
