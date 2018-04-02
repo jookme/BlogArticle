@@ -13,11 +13,9 @@
 * [入口](#入口)
 * [文件目录说明](#文件目录)
 
-### 文件目录
-![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/tree.png "目录树")
 ### 数据库
 * 数据库建表
-![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/tree.png "目录树")
+* ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/tree.png "目录树")
 ### 功能
 #### 查询文章列表
 #### 查询文章内容
