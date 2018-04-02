@@ -251,5 +251,20 @@ aid := c.Param("id")
 	})
 ```
 ### 单元测试
-
+#### 对TestGetList进行测试
+* 测试前Article表<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/database/article%E8%A1%A8.png "artic表")<br>
+* 测试代码<br>
+```
+list, err := models.GetArticleList()
+	fmt.Printf("The list is :%s", list)
+	fmt.Println("")
+	if err != nil {
+		t.Error(`Error in GetArticleList!`)
+	}
+```
+* 在vscode终端输入测试命令<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestGetlist1.png "")<br>
+* 测试结果输出<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestGetlist2.png "")<br>
 
