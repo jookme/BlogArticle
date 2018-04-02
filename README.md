@@ -14,7 +14,8 @@
 * [文件目录说明](#文件目录)
 
 ### 数据库
-使用的数据库：mysql<br>
+使用的数据库<br>
+mysql<br>
 数据库建表<br>
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/database/article%E8%A1%A8.png "artic表")<br>
 初始化数据库连接池<br>
@@ -32,6 +33,7 @@
 		log.Fatal(err.Error())
 	}
 ```    
+<br>
 =========
 
 ### 功能
