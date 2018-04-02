@@ -312,3 +312,24 @@ var article models.Article
 * 测试后表更改为
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/UpdateArticle.png "")<br>
 
+#### 对DeleteArticle进行测试
+* 测试前Article表<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/UpdateArticle.png "")<br>
+* 测试代码<br>
+```
+testId := 2
+	num, err := models.DeleteArticle(testId)
+	fmt.Println(num)
+	if err != nil {
+		t.Error(`Error`)
+	} else {
+		fmt.Println("Delete Success!")
+	}
+```
+* 在vscode终端输入测试命令<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestDeleteArticle1.png "")<br>
+* 测试结果输出<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestDeleteArticle2.png "")<br>
+* 测试后表更改为
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/DeleteArticle.png "")<br>
+
