@@ -251,7 +251,7 @@ aid := c.Param("id")
 	})
 ```
 ### 单元测试
-#### 对TestGetList进行测试
+#### 对GetArticleList进行测试
 * 测试前Article表<br>
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/database/article%E8%A1%A8.png "artic表")<br>
 * 测试代码<br>
@@ -267,4 +267,21 @@ list, err := models.GetArticleList()
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestGetlist1.png "")<br>
 * 测试结果输出<br>
 ![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestGetlist2.png "")<br>
+
+#### 对GetArtiContent进行测试
+* 测试前Article表<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/database/article%E8%A1%A8.png "artic表")<br>
+* 测试代码<br>
+```
+content, err := models.GetArtiContent(2)
+	fmt.Printf("The content is :%s", content)
+	fmt.Println("")
+	if err != nil {
+		t.Error(`Error in GetArtiContent!`)
+	}
+```
+* 在vscode终端输入测试命令<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestGetArtiContent1.png "")<br>
+* 测试结果输出<br>
+![404 找不到！](https://github.com/jookme/BlogArticle/blob/master/img/test/TestGetArtiContent2.png "")<br>
 
